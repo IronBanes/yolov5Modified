@@ -171,6 +171,29 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         annotator.box_label(xyxy, label, color=colors(c, True))
+
+                        #######################################
+                        #Added Code
+                        #######################################
+                        x1 = int(xyxy[0].item())
+                        y1 = int(xyxy[1].item())
+                        x2 = int(xyxy[2].item())
+                        y2 = int(xyxy[3].item())
+
+                        confidence_score = conf
+                        class_index = cls
+                        object_name = names[int(cls)]
+                        
+                        print('bounding box is ',x1, y1, x2, y2)
+                        print('class index is ', class_index)
+                        print('detected object name is ', object_name)
+
+                        original_img = im0
+                        cropped_img = im0[y1:y2, x1:x2]
+                        cv2.imwrite('p.png', cropped_img)
+
+                        #######################################
+                        
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
