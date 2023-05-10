@@ -204,7 +204,7 @@ def run(
                             pathtemp = pathtemp+".picture_2"
                         else:
                             pathtemp = pathtemp + ".picture_1"
-                        pathtemp += ".png"
+                        pathtemp += ".jpg"
                         cv2.imwrite(pathtemp, cropped_img)
 
 
