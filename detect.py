@@ -190,7 +190,23 @@ def run(
 
                         original_img = im0
                         cropped_img = im0[y1:y2, x1:x2]
-                        cv2.imwrite('p.png', cropped_img)
+                        try:
+                            os.mkdir("../images")
+                        except:
+                            pass
+
+                        outpathimage = os.path.basename(os.path.normpath(path)).split('.')[:-1]
+                        emptystring = "."
+                        outpathimagestr = emptystring.join(outpathimage)
+                        print()
+                        pathtemp = '../images/'+ outpathimagestr
+                        if os.path.exists(pathtemp):
+                            pathtemp = pathtemp+".picture_2"
+                        else:
+                            pathtemp = pathtemp + ".picture_1"
+                        pathtemp += ".png"
+                        cv2.imwrite(pathtemp, cropped_img)
+
 
                         #######################################
                         
